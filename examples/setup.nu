@@ -15,7 +15,7 @@ def main [--gitopsrepo: string] {
             --namespace crossplane-system --create-namespace --wait
     )
 
-    kubectl apply --filename config.yaml
+    # kubectl apply --filename config.yaml
 
     (
         kubectl apply
@@ -44,7 +44,7 @@ def main [--gitopsrepo: string] {
             --filename $"providers/provider-config-($hyperscaler).yaml"
     )
 
-    kubectl create namespace a-team
+    kubectl create namespace cto-architecture
 
     if ($gitopsrepo | is-not-empty) {
         set-gitops $gitopsrepo

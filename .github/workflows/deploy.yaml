@@ -1,0 +1,33 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-to-cluster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: jetpack-io/devbox-install-action@v0.11.0
+        with:
+          enable-cache: true
+          project-path: .github/workflows
+      - uses: helm/kind-action@v1
+      - uses: crazy-max/ghaction-setup-containerd@v3
+      - uses: 1password/load-secrets-action/configure@v2
+        with:
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+      - name: Setup
+        run: |
+          devbox --config .github/workflows run cluster-create && sleep 60
+      - name: Validate
+        run: |
+          echo "This might be tricky."
+      - name: Destroy
+        run: |
+          devbox --config .github/workflows run cluster-destroy

@@ -1,9 +1,9 @@
 apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
-  name: a-team
+  name: cto-architecture-team
 spec:
-  id: a-team
+  id: cto-architecture-team
   compositionSelector:
     matchLabels:
       provider: aws

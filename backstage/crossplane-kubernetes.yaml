@@ -5,7 +5,7 @@ metadata:
   title: Crossplane Kubernetes
   description: Create and Manage Kubernetes Clusters
 spec:
-  owner: vfarcic/crossplane-kubernetes
+  owner: prolixalias/crossplane-kubernetes
   type: service
   parameters:
   - title: Service Selector
@@ -26,7 +26,7 @@ spec:
         type: string
       repositoryUser:
         type: string
-        default: vfarcic
+        default: prolixalias
     required:
     - name
     - provider
@@ -53,7 +53,7 @@ spec:
         title: General namespaces
         type: array
         default:
-        - dev
+        - development
         - production
         items:
           type: string
@@ -79,11 +79,11 @@ spec:
           host:
             title: Argo CD host
             type: string
-            default: acme.com
+            default: argocd.lab.fervid.us
           repoURL:
             title: Argo CD repoURL
             type: string
-            default: https://github.com/vfarcic/SOMETHING
+            default: https://github.com/prolixalias/SOMETHING
           destinationNamespace:
             title: Argo CD destinationNamespace
             type: string

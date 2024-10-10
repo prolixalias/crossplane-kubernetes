@@ -1,0 +1,42 @@
+name: prune
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Cleanup
+        run: |
+          export days_allowed=30
+          target_tenants=$(ls -1 deploy/tenants)
+          for target_tenant in $target_tenants; do
+            echo -n "."
+            cd deploy/tenants/$target_tenant
+            target_files = $(ls -1 *.yaml)
+            for target_file in $target_files; do
+              MTIME=$(git log -1 --format="%at" -- $target_file")
+              if [ "$MTIME" -lt $days_allowed]; then
+                echo -e "\nExpiring $target_file modified $(date -d "@$MTIME")"
+                mv $target_file expired/
+              else
+                echo "Nothing to do, exiting..."
+            done
+          done
+      - name: Commit & Push
+        run: |
+          if [ $(git status --porcelain | wc -l) -eq "0" ]; then
+            echo "Nothing to do, exiting..."
+          else
+            git add -A
+            git commit -m "auto-prune"
+            git Push
+            echo "Done."
+          fi

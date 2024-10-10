@@ -61,11 +61,11 @@ appArgocd = {
         }
         host = {
             type = "string"
-            default = "acme.com"
+            default = "argocd.lab.fervid.us"
         }
         repoURL = {
             type = "string"
-            default = "https://github.com/vfarcic/SOMETHING"
+            default = "https://github.com/prolixalias/SOMETHING"
         }
         destinationNamespace = {
             type = "string"

@@ -9,6 +9,6 @@ spec:
       argocd:
         enabled: true
         host: argocd.acme.com
-        repoURL: https://github.com/vfarcic/my-repo
+        repoURL: https://github.com/prolixalias/my-repo
         destinationNamespace: my-namespace
         sourcePath: my-path

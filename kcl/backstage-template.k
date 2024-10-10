@@ -24,7 +24,7 @@ metadata = {
     description = "Create and Manage Kubernetes Clusters"
 }
 spec = {
-    owner = "vfarcic/crossplane-kubernetes"
+    owner = "prolixalias/crossplane-kubernetes"
     type = "service"
     parameters = [{
         title = "Service Selector"
@@ -42,7 +42,7 @@ spec = {
             repository.type = "string"
             repositoryUser = {
                 type = "string"
-                default = "vfarcic"
+                default = "prolixalias"
             }
         }
         required = ["name", "provider", "namespace", "repository"]

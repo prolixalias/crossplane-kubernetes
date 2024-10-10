@@ -1,9 +1,9 @@
 apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
-  name: a-team
+  name: cto-architeture
 spec:
-  id: a-team
+  id: cto-architecture
   compositionSelector:
     matchLabels:
       provider: aws
@@ -14,14 +14,14 @@ spec:
     usage:
       enabled: true
     apps:
-      traefik:
-        enabled: true
       argocd:
         enabled: true
-        host: argocd.44.212.104.168.nip.io
-        repoURL: https://github.com/vfarcic/crossplane-kubernetes-gitops
+        host: argocd.127.0.0.1.nip.io
+        repoURL: https://github.com/prolixalias/crossplane-kubernetes
       dapr:
         enabled: true
+      traefik:
+        enabled: true
     namespaces:
-    - dev
+    - development
     - production

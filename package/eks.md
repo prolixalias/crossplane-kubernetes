@@ -37,7 +37,7 @@ kubectl apply \
 kubectl wait --for=condition=healthy provider.pkg.crossplane.io \
     --all
 
-kubectl apply --filename ../config.yaml
+# kubectl apply --filename ../config.yaml
 
 sleep 5
 

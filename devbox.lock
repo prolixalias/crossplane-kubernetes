@@ -197,51 +197,51 @@
         }
       }
     },
-    "chezmoi@latest": {
-      "last_modified": "2024-10-04T16:56:48Z",
-      "resolved": "github:NixOS/nixpkgs/8bca501bf31b54ae2022fe5065ab475d75f7560e#chezmoi",
+    "chezmoi@2.48.1": {
+      "last_modified": "2024-05-29T10:04:41Z",
+      "resolved": "github:NixOS/nixpkgs/ac82a513e55582291805d6f09d35b6d8b60637a1#chezmoi",
       "source": "devbox-search",
-      "version": "2.52.3",
+      "version": "2.48.1",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/v8h813n09xwykf8pynlp9vvvgiqmzjvj-chezmoi-2.52.3",
+              "path": "/nix/store/5m3hn6lhagpry75zsdbcsi6zqsf6aw12-chezmoi-2.48.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/v8h813n09xwykf8pynlp9vvvgiqmzjvj-chezmoi-2.52.3"
+          "store_path": "/nix/store/5m3hn6lhagpry75zsdbcsi6zqsf6aw12-chezmoi-2.48.1"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/f3anf21lq2a6754qzwfygm4zl74w43qv-chezmoi-2.52.3",
+              "path": "/nix/store/hz3p1a9rwgdg96k0y9nr1pmffjr4mfjw-chezmoi-2.48.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/f3anf21lq2a6754qzwfygm4zl74w43qv-chezmoi-2.52.3"
+          "store_path": "/nix/store/hz3p1a9rwgdg96k0y9nr1pmffjr4mfjw-chezmoi-2.48.1"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/bkrl11cb9nipm7hrsjhwxdpb77v1y1lj-chezmoi-2.52.3",
+              "path": "/nix/store/d7jhrgmzxr2lb87c8n7h8dnq8n1fpy3p-chezmoi-2.48.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/bkrl11cb9nipm7hrsjhwxdpb77v1y1lj-chezmoi-2.52.3"
+          "store_path": "/nix/store/d7jhrgmzxr2lb87c8n7h8dnq8n1fpy3p-chezmoi-2.48.1"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/adm9cy9f4lls3842xllxw0gvnfffxf74-chezmoi-2.52.3",
+              "path": "/nix/store/xkbvk954mxmifydpnbpxjkjmgajbw92w-chezmoi-2.48.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/adm9cy9f4lls3842xllxw0gvnfffxf74-chezmoi-2.52.3"
+          "store_path": "/nix/store/xkbvk954mxmifydpnbpxjkjmgajbw92w-chezmoi-2.48.1"
         }
       }
     },
@@ -1430,6 +1430,34 @@
             }
           ],
           "store_path": "/nix/store/mbcx1lql6g40bp8sim2vq87hlgdam5ba-kyverno-chainsaw-0.2.5"
+        }
+      }
+    },
+    "nerdctl@1.7.6": {
+      "last_modified": "2024-09-10T15:01:03Z",
+      "resolved": "github:NixOS/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269#nerdctl",
+      "source": "devbox-search",
+      "version": "1.7.6",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/26cphnlxbki2vbag83f50mggp50mgp3i-nerdctl-1.7.6",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/26cphnlxbki2vbag83f50mggp50mgp3i-nerdctl-1.7.6"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9pzdjql66lnpzh4jl08hfa6bdz2gwrc1-nerdctl-1.7.6",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9pzdjql66lnpzh4jl08hfa6bdz2gwrc1-nerdctl-1.7.6"
         }
       }
     },

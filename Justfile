@@ -10,12 +10,13 @@ package-generate:
   kcl run kcl/crossplane.k > package/crossplane.yaml
   kcl run kcl/definition.k > package/definition.yaml
   kcl run kcl/compositions.k > package/compositions.yaml
-  kcl run kcl/backstage-template.k > backstage/crossplane-kubernetes.yaml
+  # kcl run kcl/backstage-template.k > backstage/crossplane-kubernetes.yaml
 
 # Applies Compositions and Composite Resource Definition.
 package-apply:
   kubectl apply --filename package/definition.yaml && sleep 1
   kubectl apply --filename package/compositions.yaml
+  kubectl apply --filename package/sql.yaml
 
 # Builds and pushes the package.
 #package-publish: package-generate
@@ -83,7 +84,11 @@ cluster-destroy-google:
 _cluster-create-kind:
   -KIND_EXPERIMENTAL_PROVIDER=nerdctl kind create cluster --config kind.yaml
   helm upgrade --install crossplane crossplane --repo https://charts.crossplane.io/stable --version 1.17.1 --namespace crossplane-system --create-namespace --wait
-  -eval $(op signin) && op document get {{credentials_aws}} --vault automation | kubectl --namespace crossplane-system create secret generic aws-secret --from-literal creds=-
+  -eval $(op signin) && op document get {{credentials_aws}} --vault automation | kubectl --namespace crossplane-system create secret generic aws-secret --from-file=creds=/dev/stdin
   for provider in `ls -1 providers | grep -v config`; do kubectl apply --filename providers/$provider; done
+  kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=1800s
+  for providerconfig in `ls -1 providers | grep provider-config`; do kubectl apply --filename providers/$providerconfig; done
   for tenant in `ls -1 deploy/tenants`; do kubectl create namespace ${tenant} || true; done
+  kubectl apply --filename providers/provider-config-aws.yaml
   helm upgrade --install argocd argo-cd --repo https://argoproj.github.io/argo-helm --namespace argocd --create-namespace --values deploy/argocd/values.yaml --wait --timeout 10m
+  kubectl apply -f deploy/argocd/applications.yaml

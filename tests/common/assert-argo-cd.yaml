@@ -90,7 +90,7 @@ spec:
       spec:
         project: default
         source:
-          repoURL: https://github.com/vfarcic/my-repo
+          repoURL: https://github.com/prolixalias/my-repo
           targetRevision: HEAD
           path: my-path
         destination:
