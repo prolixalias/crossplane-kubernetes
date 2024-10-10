@@ -36,7 +36,7 @@ spec:
     databases:
       - silly-demo-db
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: AppClaim
 metadata:
   name: silly-demo
