@@ -1,5 +1,5 @@
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
   name: cluster-01
@@ -20,7 +20,7 @@ metadata:
 data:
   password: cG9zdGdyZXM=
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: SQLClaim
 metadata:
   name: silly-demo-db
