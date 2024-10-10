@@ -1,0 +1,27 @@
+name: deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Devbox
+        uses: jetpack-io/devbox-install-action@v0.13.4
+        with:
+          enable-cache: true
+          project-path: .github/workflows
+      - name: Create
+        run: |
+          devbox --config .github/workflows run cluster-create && sleep 60
+      - name: Validate
+        run: |
+          echo "This might be tricky."
+      - name: Destroy
+        run: |
+          devbox --config .github/workflows run cluster-destroy
