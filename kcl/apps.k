@@ -8,8 +8,8 @@ externalSecrets = "0.9.11"
 cilium = "1.14.2"
 openFunctionUrl = "https://openfunction.github.io/charts/openfunction-v1.2.0-v0.7.0.tgz"
 
-oxr = option("params").oxr
-ocds = option("params").ocds
+oxr = option("params").oxr 
+ocds = option("params").ocd
 
 _metadata = lambda suffix: str -> any {
     {

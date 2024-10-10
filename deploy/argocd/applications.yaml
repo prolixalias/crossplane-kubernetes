@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/prolixalias/crossplane-kubernetes
     targetRevision: HEAD
-    path: deploy/cto-architecture
+    path: deploy/tenants/cto-architecture
   destination:
     server: https://kubernetes.default.svc
     namespace: cto-architecture
