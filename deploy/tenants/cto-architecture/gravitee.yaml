@@ -1,0 +1,191 @@
+---
+
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: mongodb
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: mongodb-atlas-operator
+      repository: https://mongodb.github.io/helm-charts
+      version: 2.4.1
+    namespace: cto-architecture
+  providerConfigRef:
+    name: crossplane-provider-helm
+
+---
+
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-api-management
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: apim
+      repository: https://helm.gravitee.io
+      version: 4.4.9
+    namespace: cto-architecture
+    values:
+      mongodb-replicaset:
+        enabled: true
+      elasticsearch:
+        enabled: true
+      gateway:
+        ingress:
+          enabled: true
+          ingressClassName: "nginx"
+          hosts: ["apim.127.0.0.1.nip.io"]
+      api:
+        ingress:
+          management:
+            enabled: true
+            ingressClassName: "nginx"
+            hosts: ["apim.127.0.0.1.nip.io"]
+          portal:
+            enabled: true
+            ingressClassName: "nginx"
+            hosts: ["apim.127.0.0.1.nip.io"]
+      ui:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["apim.127.0.0.1.nip.io"]
+      portal:
+        ingress:
+          enabled: true
+          ingressClassName: "nginx"
+          hosts: ["apim.127.0.0.1.nip.io"]
+  providerConfigRef:
+    name: crossplane-provider-helm
+
+---
+
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-access-management
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: am
+      repository: https://helm.gravitee.io
+      version: 4.3.0
+    namespace: cto-archiietcture
+    values:
+      api:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
+      gateway:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
+      services:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
+      ui:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
+  providerConfigRef:
+    name: crossplane-provider-helm
+
+---
+
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-alert-engine
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: ae
+      repository: https://helm.gravitee.io
+      version: 1.1.46
+    namespace: cto-architecture
+    values:
+      engine:
+        ingress:
+          enabled: false
+          ingressClassName: "nginx"
+          hosts: ["ae.127.0.0.1.nip.io"]
+  providerConfigRef:
+    name: crossplane-provider-helm
+
+# ---
+
+# apiVersion: kubernetes.crossplane.io/v1alpha2
+# kind: Object
+# metadata:
+#   annotations:
+#     uptest.upbound.io/timeout: "60"
+# spec:
+#   forProvider:
+#     manifest:
+#       apiVersion: networking.k8s.io/v1
+#       kind: Ingress
+#       metadata:
+#         annotations:
+#           kubernetes.io/ingress.class: traefik
+#           traefik.ingress.kubernetes.io/ssl-redirect: false
+#         name: gravitee-access-management-api-ingress
+#         namespace: cto-development
+#       spec:
+#         rules:
+#           - host: apim.127.0.0.1.nip.io
+#             http:
+#               paths:
+#                 - backend:
+#                     service:
+#                       name: gravitee-api-management-apim-api
+#                       port:
+#                         number: 83
+#                   pathType: ImplementationSpecific
+#         tls: []
+#   providerConfigRef:
+#     name: crossplane-provider-kubernetes
+#
+# ---
+#
+# apiVersion: kubernetes.crossplane.io/v1alpha2
+# kind: Object
+# metadata:
+#   annotations:
+#     uptest.upbound.io/timeout: "60"
+# spec:
+#   forProvider:
+#     managementPolicies: ["*"]
+#     manifest:
+#       apiVersion: networking.k8s.io/v1
+#       kind: Ingress
+#       metadata:
+#         annotations:
+#           kubernetes.io/ingress.class: traefik
+#           traefik.ingress.kubernetes.io/ssl-redirect: false
+#         name: gravitee-access-management-gateway-ingress
+#         namespace: cto-development
+#       spec:
+#         rules:
+#           - host: apim.127.0.0.1.nip.io
+#             http:
+#               paths:
+#                 - backend:
+#                     service:
+#                       name: gravitee-api-management-apim-gateway
+#                       port:
+#                         number: 82
+#                   pathType: ImplementationSpecific
+#         tls: []
+#   providerConfigRef:
+#     name: crossplane-provider-kubernetes

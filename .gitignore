@@ -8,3 +8,4 @@
 /.task
 /.kclvm
 /.env
+.DS_Store

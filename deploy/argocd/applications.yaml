@@ -1,0 +1,22 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cto-architecture
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prolixalias/crossplane-kubernetes
+    targetRevision: HEAD
+    path: deploy/cto-architecture
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cto-architecture
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true

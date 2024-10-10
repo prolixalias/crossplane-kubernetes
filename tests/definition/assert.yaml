@@ -3,7 +3,7 @@ kind: CompositeResourceDefinition
 metadata:
   labels:
     idp: "true"
-  name: compositeclusters.devopstoolkitseries.com
+  name: compositeclusters.fervid.us
 spec:
   claimNames:
     kind: ClusterClaim
@@ -15,7 +15,7 @@ spec:
   defaultCompositionRef:
     name: cluster-aws
   defaultCompositionUpdatePolicy: Automatic
-  group: devopstoolkitseries.com
+  group: fervid.us
   names:
     kind: CompositeCluster
     plural: compositeclusters

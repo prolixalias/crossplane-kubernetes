@@ -17,7 +17,7 @@ schema composition:
     }
     spec = {
         compositeTypeRef = {
-            apiVersion = "devopstoolkitseries.com/v1alpha1"
+            apiVersion = "fervid.us/v1alpha1"
             kind = "CompositeCluster"
         }
         mode = "Pipeline"

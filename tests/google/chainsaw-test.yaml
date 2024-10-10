@@ -59,6 +59,6 @@ spec:
             file: ../common/assert-argo-cd.yaml
     #   catch:
     #     - describe:
-    #         apiVersion: devopstoolkitseries.com/v1alpha1
+    #         apiVersion: fervid.us/v1alpha1
     #         kind: compositecluster
     #         selector: crossplane.io/claim-namespace=$NAMESPACE

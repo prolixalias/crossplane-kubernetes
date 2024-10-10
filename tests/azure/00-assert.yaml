@@ -1,4 +1,4 @@
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
   name: a-team-aks
@@ -14,17 +14,17 @@ spec:
     minNodeCount: 1
     nodeSize: medium
   resourceRef:
-    apiVersion: devopstoolkitseries.com/v1alpha1
+    apiVersion: fervid.us/v1alpha1
     kind: CompositeCluster
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: CompositeCluster
 metadata:
   labels:
     crossplane.io/claim-name: a-team-aks
 spec:
   claimRef:
-    apiVersion: devopstoolkitseries.com/v1alpha1
+    apiVersion: fervid.us/v1alpha1
     kind: ClusterClaim
     name: a-team-aks
   compositionRef:
@@ -79,7 +79,7 @@ metadata:
     crossplane.io/claim-name: a-team-aks
   name: a-team-aks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -103,7 +103,7 @@ metadata:
     crossplane.io/claim-name: a-team-aks
   name: a-team-aks
   ownerReferences:
-    - apiVersion: devopstoolkitseries.com/v1alpha1
+    - apiVersion: fervid.us/v1alpha1
       blockOwnerDeletion: true
       controller: true
       kind: CompositeCluster
@@ -152,7 +152,7 @@ metadata:
     crossplane.io/claim-name: a-team-aks
   name: a-team-aks-cilium
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -198,7 +198,7 @@ metadata:
   labels:
     crossplane.io/claim-name: a-team-aks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -221,7 +221,7 @@ metadata:
   labels:
     crossplane.io/claim-name: a-team-aks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster

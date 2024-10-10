@@ -1,5 +1,5 @@
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
   name: a-team-eks
@@ -15,17 +15,17 @@ spec:
     minNodeCount: 3
     nodeSize: medium
   resourceRef:
-    apiVersion: devopstoolkitseries.com/v1alpha1
+    apiVersion: fervid.us/v1alpha1
     kind: CompositeCluster
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: CompositeCluster
 metadata:
   labels:
     crossplane.io/claim-name: a-team-eks
 spec:
   claimRef:
-    apiVersion: devopstoolkitseries.com/v1alpha1
+    apiVersion: fervid.us/v1alpha1
     kind: ClusterClaim
     name: a-team-eks
   compositionRef:
@@ -138,7 +138,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -160,7 +160,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -184,7 +184,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -209,7 +209,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-1a
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -236,7 +236,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-1b
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -263,7 +263,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-1c
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -290,7 +290,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -312,7 +312,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -341,7 +341,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -367,7 +367,7 @@ metadata:
     zone: us-east-1a
   name: a-team-eks-1a
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -396,7 +396,7 @@ metadata:
     zone: us-east-1b
   name: a-team-eks-1b
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -425,7 +425,7 @@ metadata:
     zone: us-east-1c
   name: a-team-eks-1c
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -452,7 +452,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -474,7 +474,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-ebs
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -501,7 +501,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -527,7 +527,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -559,7 +559,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -598,7 +598,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-controlplane
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -625,7 +625,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-service
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -652,7 +652,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-worker
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -679,7 +679,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-cni
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -706,7 +706,7 @@ metadata:
     crossplane.io/claim-name: a-team-eks
   name: a-team-eks-registry
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -735,7 +735,7 @@ metadata:
     role: a-team-eks-controlplane
   name: a-team-eks-controlplane
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -765,7 +765,7 @@ metadata:
     role: a-team-eks-nodegroup
   name: a-team-eks-nodegroup
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -792,7 +792,7 @@ metadata:
   labels:
     crossplane.io/claim-name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -815,7 +815,7 @@ metadata:
   labels:
     crossplane.io/claim-name: a-team-eks
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
@@ -852,7 +852,7 @@ spec:
 #     crossplane.io/claim-name: a-team-eks
 #   name: a-team-eks-cilium
 #   ownerReferences:
-#   - apiVersion: devopstoolkitseries.com/v1alpha1
+#   - apiVersion: fervid.us/v1alpha1
 #     blockOwnerDeletion: true
 #     controller: true
 #     kind: CompositeCluster

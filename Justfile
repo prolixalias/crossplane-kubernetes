@@ -1,4 +1,5 @@
-timeout := "300s"
+timeout := "600s"
+credentials_aws := "aws_credentials_cynerge"
 
 # List tasks.
 default:
@@ -17,12 +18,12 @@ package-apply:
   kubectl apply --filename package/compositions.yaml
 
 # Builds and pushes the package.
-package-publish: package-generate
-  up login --token $UP_TOKEN
-  up xpkg build --package-root package --name kubernetes.xpkg
-  up xpkg push --package package/kubernetes.xpkg xpkg.upbound.io/$UP_ACCOUNT/dot-kubernetes:$VERSION
-  rm package/kubernetes.xpkg
-  yq --inplace ".spec.package = \"xpkg.upbound.io/devops-toolkit/dot-kubernetes:$VERSION\"" config.yaml
+#package-publish: package-generate
+#  up login --token $UP_TOKEN
+#  up xpkg build --package-root package --name kubernetes.xpkg
+#  up xpkg push --package package/kubernetes.xpkg xpkg.upbound.io/$UP_ACCOUNT/dot-kubernetes:$VERSION
+#  rm package/kubernetes.xpkg
+#  yq --inplace ".spec.package = \"xpkg.upbound.io/devops-toolkit/dot-kubernetes:$VERSION\"" config.yaml
 
 # Combines `package-generate` and `package-apply`.
 package-generate-apply: package-generate package-apply
@@ -46,6 +47,7 @@ cluster-create: package-generate _cluster-create-kind
   sleep 60
   kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout={{timeout}}
   kubectl wait --for=condition=healthy function.pkg.crossplane.io --all --timeout={{timeout}}
+  kubectl apply --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 # Executes `cluster-create` and sets it up to use Google Cloud.
 cluster-create-google: cluster-create
@@ -70,7 +72,7 @@ cluster-create-google: cluster-create
 
 # Destroys the cluster
 cluster-destroy:
-  kind delete cluster
+  KIND_EXPERIMENTAL_PROVIDER=nerdctl kind delete cluster
 
 # Removes Google Cloud project and executes `cluster-destroy`.
 cluster-destroy-google:
@@ -79,8 +81,9 @@ cluster-destroy-google:
 
 # Creates a kind cluster
 _cluster-create-kind:
-  -kind create cluster
-  -helm repo add crossplane-stable https://charts.crossplane.io/stable
-  -helm repo update
-  helm upgrade --install crossplane crossplane-stable/crossplane --namespace crossplane-system --create-namespace --wait
+  -KIND_EXPERIMENTAL_PROVIDER=nerdctl kind create cluster --config kind.yaml
+  helm upgrade --install crossplane crossplane --repo https://charts.crossplane.io/stable --version 1.17.1 --namespace crossplane-system --create-namespace --wait
+  eval $(op signin) && op document get {{credentials_aws}} --vault automation | kubectl --namespace crossplane-system create secret generic aws-secret --from-literal creds=-
   for provider in `ls -1 providers | grep -v config`; do kubectl apply --filename providers/$provider; done
+  for tenant in `ls -1 deploy/tenants`; do kubectl create namespace ${tenant}; done
+  helm upgrade --install argocd argo-cd --repo https://argoproj.github.io/argo-helm --namespace argocd --create-namespace --values deploy/argocd/values.yaml --wait --timeout 10m

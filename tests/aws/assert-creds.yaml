@@ -1,5 +1,5 @@
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
   name: (join('-', ['a-team', $cluster]))
@@ -13,7 +13,7 @@ spec:
         - access-key-id
         - secret-access-key
 ---
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: CompositeCluster
 metadata:
   labels:

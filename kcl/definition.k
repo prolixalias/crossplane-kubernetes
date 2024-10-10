@@ -27,13 +27,13 @@ _properties = lambda properties: any -> any {
 apiVersion = "apiextensions.crossplane.io/v1"
 kind = "CompositeResourceDefinition"
 metadata = {
-    name = "compositeclusters.devopstoolkitseries.com"
+    name = "compositeclusters.fervid.us"
     labels.idp = "true"
 }
 spec = {
     connectionSecretKeys = ["kubeconfig", "value"]
     defaultCompositionRef = {name = "cluster-aws"}
-    group = "devopstoolkitseries.com"
+    group = "fervid.us"
     names = {kind = "CompositeCluster", plural = "compositeclusters"}
     claimNames = {kind = "ClusterClaim", plural = "clusterclaims"}
     versions = [{

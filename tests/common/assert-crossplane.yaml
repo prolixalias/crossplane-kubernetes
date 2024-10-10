@@ -1,4 +1,4 @@
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: fervid.us/v1alpha1
 kind: CompositeCluster
 metadata:
   labels:
@@ -22,7 +22,7 @@ metadata:
     crossplane.io/claim-name: (join('-', ['a-team', $cluster]))
   name: (join('-', ['a-team', $cluster, 'app-crossplane']))
   ownerReferences:
-  - apiVersion: devopstoolkitseries.com/v1alpha1
+  - apiVersion: fervid.us/v1alpha1
     blockOwnerDeletion: true
     controller: true
     kind: CompositeCluster
