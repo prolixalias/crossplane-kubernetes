@@ -29,7 +29,6 @@
     "kubernetes-helm@3.14.3",
     "kyverno-chainsaw@0.2.5",
     "nushell@0.96.1",
-    "path:devbox/gcloud#google-cloud-sdk",
     "ripgrep@14.1.1",
     "teller@2.0.7",
     "thefuck@3.32",
