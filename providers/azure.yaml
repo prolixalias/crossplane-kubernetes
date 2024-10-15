@@ -3,6 +3,15 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
+  name: provider-azure-family
+spec:
+  package: xpkg.upbound.io/upbound/provider-family-azure:v1.7.0
+
+---
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
   name: provider-azure-containerservice
 spec:
   package: xpkg.upbound.io/upbound/provider-azure-containerservice:v1.7.0
