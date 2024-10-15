@@ -79,11 +79,11 @@ spec:
           host:
             title: Argo CD host
             type: string
-            default: acme.com
+            default: argocd.lab.fervid.us
           repoURL:
             title: Argo CD repoURL
             type: string
-            default: https://github.com/vfarcic/SOMETHING
+            default: https://github.com/prolixalias/SOMETHING
           destinationNamespace:
             title: Argo CD destinationNamespace
             type: string

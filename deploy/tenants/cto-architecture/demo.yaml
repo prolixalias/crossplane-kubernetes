@@ -12,10 +12,4 @@ spec:
   parameters:
     nodeSize: small
     minNodeCount: 3
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: silly-demo-db-password
-data:
-  password: cG9zdGdyZXM=
+

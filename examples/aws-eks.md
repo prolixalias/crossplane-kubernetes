@@ -19,9 +19,9 @@ chmod +x examples/setup.nu
 ## Simple Cluster
 
 ```sh
-kubectl --namespace cto-architecture-team apply --filename examples/aws-eks.yaml
+kubectl --namespace cto-architecture apply --filename examples/aws-eks.yaml
 
-crossplane beta trace clusterclaim a-team --namespace a-team
+crossplane beta trace clusterclaim cto-architecture --namespace cto-architecture
 ```
 
 ## Package
@@ -37,7 +37,7 @@ start "https://marketplace.upbound.io/configurations/devops-toolkit/dot-kubernet
 > Open the URL from the output in a browser
 
 ```sh
-crossplane beta trace clusterclaim a-team --namespace a-team
+crossplane beta trace clusterclaim a-team --namespace cto-architecture
 ```
 
 > Wait until all the resources are `Available`.
@@ -46,7 +46,7 @@ crossplane beta trace clusterclaim a-team --namespace a-team
 
 ```sh
 (
-    aws eks update-kubeconfig --region us-east-1 --name a-team
+    aws eks update-kubeconfig --region us-east-1 --name cto-architecture
         --kubeconfig kubeconfig.yaml
 )
 
@@ -63,11 +63,11 @@ let ingress_ip = ./examples/get-traefik-eks.nu
 cat examples/aws-eks-full.yaml
 
 (
-    kubectl --namespace a-team apply
+    kubectl --namespace cto-architecture apply
         --filename examples/aws-eks-full.yaml
 )
 
-crossplane beta trace clusterclaim a-team --namespace a-team
+crossplane beta trace clusterclaim cto-architecture --namespace cto-architecture
 
 kubectl --kubeconfig kubeconfig.yaml get namespaces
 

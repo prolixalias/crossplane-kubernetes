@@ -15,17 +15,17 @@ spec:
     minNodeCount: ${{ values.minNodeCount }}
     namespaces: [${{ values.namespaces }}]
     apps:
-      crossplane:
-        enabled: ${{ values.crossplane.enabled }}
       argocd:
         enabled: ${{ values.argocd.enabled }}
         host: ${{ values.argocd.host }}
         repoURL: ${{ values.argocd.repoURL }}
         destinationNamespace: ${{ values.argocd.destinationNamespace }}
         sourcePath: ${{ values.argocd.sourcePath }}
-      openfunction:
-        enabled: ${{ values.openfunction.enabled }}
+      crossplane:
+        enabled: ${{ values.crossplane.enabled }}
       dapr:
         enabled: ${{ values.dapr.enabled }}
+      openfunction:
+        enabled: ${{ values.openfunction.enabled }}
       traefik:
         enabled: ${{ values.traefik.enabled }}
