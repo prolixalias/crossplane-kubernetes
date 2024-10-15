@@ -19,7 +19,7 @@ chmod +x examples/setup.nu
 ## Simple Cluster
 
 ```sh
-kubectl --namespace a-team apply --filename examples/aws-eks.yaml
+kubectl --namespace cto-architecture-team apply --filename examples/aws-eks.yaml
 
 crossplane beta trace clusterclaim a-team --namespace a-team
 ```
