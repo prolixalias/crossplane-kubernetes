@@ -12,7 +12,7 @@ spec:
     nodeSize: medium
     minNodeCount: 1
     namespaces:
-      - dev
+      - development
       - production
     apps:
       dapr:

@@ -53,7 +53,7 @@ spec:
         title: General namespaces
         type: array
         default:
-        - dev
+        - development
         - production
         items:
           type: string
