@@ -30,7 +30,7 @@
     "kyverno-chainsaw@0.2.5",
     "nerdctl@1.7.6",
     "nushell@0.96.1",
-    "path:devbox/gcloud#google-cloud-sdk",
+    "path:../devbox/gcloud#google-cloud-sdk",
     "ripgrep@14.1.1",
     "teller@2.0.7",
     "thefuck@3.32",
