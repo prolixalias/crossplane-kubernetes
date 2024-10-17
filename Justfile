@@ -85,6 +85,8 @@ _cluster-create-kind:
   helm upgrade --install crossplane crossplane --repo https://charts.crossplane.io/stable --version 1.17.1 --namespace crossplane-system --create-namespace --wait
   -eval $(op signin) && op document get {{credentials_aws}} --vault automation | kubectl --namespace crossplane-system create secret generic aws-secret --from-file=creds=/dev/stdin
   for provider in `ls -1 providers | grep -v config`; do kubectl apply --filename providers/$provider; done
+  kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=1800s
+  for providerconfig in `ls -1 providers | grep provider-config`; do kubectl apply --filename providers/$providerconfig; done
   for tenant in `ls -1 deploy/tenants`; do kubectl create namespace ${tenant} || true; done
   kubectl apply --filename providers/provider-config-aws.yaml
   helm upgrade --install argocd argo-cd --repo https://argoproj.github.io/argo-helm --namespace argocd --create-namespace --values deploy/argocd/values.yaml --wait --timeout 10m
