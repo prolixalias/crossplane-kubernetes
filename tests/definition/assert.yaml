@@ -59,7 +59,7 @@ spec:
                             default: acme.com
                             type: string
                           repoURL:
-                            default: https://github.com/vfarcic/SOMETHING
+                            default: https://github.com/prolixalias/SOMETHING
                             type: string
                           sourcePath:
                             default: .

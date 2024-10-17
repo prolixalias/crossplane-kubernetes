@@ -1,4 +1,4 @@
-crossplane = "1.14.5"
+crossplane = "1.17.1"
 argocd = "3.35.4"
 dapr = "1.12.4"
 traefik = "26.0.0"

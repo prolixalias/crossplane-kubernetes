@@ -5,7 +5,7 @@ metadata:
   title: Crossplane Kubernetes
   description: Create and Manage Kubernetes Clusters
 spec:
-  owner: vfarcic/crossplane-kubernetes
+  owner: prolixalias/crossplane-kubernetes
   type: service
   parameters:
   - title: Service Selector
@@ -26,7 +26,7 @@ spec:
         type: string
       repositoryUser:
         type: string
-        default: vfarcic
+        default: prolixalias
     required:
     - name
     - provider

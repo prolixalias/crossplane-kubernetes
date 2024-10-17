@@ -50,7 +50,7 @@ spec:
                     description: List of Namespaces that should be created in the cluster
                     type: array
                     default:
-                    - development
+                    - dev
                     - production
                     items:
                       type: string
