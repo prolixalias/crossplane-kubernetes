@@ -4,6 +4,8 @@ on:
     branches:
       - main
 jobs:
+  create-cluster:
+    runs-on: ubuntu-latest
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -11,12 +13,14 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
       - name: Install Devbox
         uses: jetpack-io/devbox-install-action@v0.11.0
         with:
           enable-cache: true
           project-path: .github/workflows
-      - name: Create
+      - name: Setup
         run: |
           devbox --config .github/workflows run cluster-create && sleep 60
       - name: Validate
