@@ -11,25 +11,34 @@ metadata = {
     }
 }
 spec = {
-    crossplane.version = ">=v1.14.0"
+    crossplane.version = ">=v1.17.0"
     dependsOn = [{
         provider = "xpkg.upbound.io/upbound/provider-aws-eks"
-        version = ">=v1.0.0"
+        version = ">=v1.15.0"
     }, {
         provider = "xpkg.upbound.io/upbound/provider-aws-iam"
-        version = ">=v1.0.0"
+        version = ">=v1.15.0"
     }, {
         provider = "xpkg.upbound.io/upbound/provider-aws-ec2"
-        version = ">=v1.0.0"
+        version = ">=v1.15.0"
+    }, {
+        provider = "xpkg.upbound.io/upbound/provider-aws-elbv2"
+        version = ">=v1.15.0"
+    }, {
+        provider = "xpkg.upbound.io/upbound/provider-aws-rds"
+        version = ">=v1.15.0"
     }, {
         provider = "xpkg.upbound.io/upbound/provider-azure-containerservice"
-        version = ">=v1.0.0"
+        version = ">=v1.7.0"
     }, {
         provider = "xpkg.upbound.io/upbound/provider-gcp-container"
-        version = ">=v1.0.0"
+        version = ">=v1.8.3"
+    }, {
+        provider = "xpkg.upbound.io/crossplane-contrib/provider-sql"
+        version = >=v0.9.0"
     }, {
         function = "xpkg.upbound.io/crossplane-contrib/function-auto-ready"
-        version = ">=v0.2.1"
+        version = ">=v0.3.0"
     }, {
         function = "xpkg.upbound.io/crossplane-contrib/function-kcl"
         version = ">=v0.10.3"

@@ -18,6 +18,10 @@ spec:
     version: '>=v1.0.0'
   - provider: xpkg.upbound.io/upbound/provider-aws-ec2
     version: '>=v1.0.0'
+  - provider: xpkg.upbound.io/upbound/provider-aws-ec2
+    version: '>=v1.0.0'
+  - provider: xpkg.upbound.io/upbound/provider-aws-ec2
+    version: '>=v1.0.0'
   - provider: xpkg.upbound.io/upbound/provider-azure-containerservice
     version: '>=v1.0.0'
   - provider: xpkg.upbound.io/upbound/provider-gcp-container
