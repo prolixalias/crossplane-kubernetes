@@ -45,20 +45,20 @@ data:
 #       namespace: cto-architecture
 #     kubernetesProviderConfigName: cluster-01
 
-# ---
+---
 
-# apiVersion: fervid.us/v1alpha1
-# kind: SQLClaim
-# metadata:
-#   name: wordpress-db
-# spec:
-#   id: wordpress-db
-#   compositionSelector:
-#     matchLabels:
-#       provider: aws
-#       db: postgresql
-#   parameters:
-#     version: "13"
-#     size: small
-#     databases:
-#       - wordpress-db
+apiVersion: fervid.us/v1alpha1
+kind: SQLClaim
+metadata:
+  name: wordpress-db
+spec:
+  id: wordpress-db
+  compositionSelector:
+    matchLabels:
+      provider: aws
+      db: postgresql
+  parameters:
+    version: "13"
+    size: small
+    databases:
+      - wordpress-db
