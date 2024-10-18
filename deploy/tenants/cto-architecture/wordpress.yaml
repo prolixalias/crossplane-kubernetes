@@ -19,46 +19,48 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: wordpress-db-credentials
+  name: rds-instance-credentials
 data:
   password: cG9zdGdyZXM=
 
-# ---
+---
 
-# apiVersion: fervid.us/v1alpha1
-# kind: AppClaim
-# metadata:
-#   name: wordpress
-# spec:
-#   id: wordpress
-#   compositionSelector:
-#     matchLabels:
-#       type: wordpress-db
-#       location: remote
-#   parameters:
-#     namespace: development
-#     image: wordpress:latest
-#     port: 8080
-#     host: wordpress.lab.fervid.us
-#     dbSecret:
-#       name: wordpress-db-credentials
-#       namespace: cto-architecture
-#     kubernetesProviderConfigName: cluster-01
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: wordpress-db
+spec:
+  forProvider:
+    dbInstanceClass: db.t3.micro
+    masterUsername: masteruser
+    masterUserPasswordSecretRef:
+      name: rds-instance-credentials
+      key: password
+    allocatedStorage: 20
+    engine: postgresql
+    engineVersion: "16.4"
+    region: us-east-1
+  providerConfigRef:
+    name: default
 
 ---
 
 apiVersion: fervid.us/v1alpha1
-kind: SQLClaim
+kind: AppClaim
 metadata:
-  name: wordpress-db
+  name: wordpress
 spec:
-  id: wordpress-db
+  id: wordpress
   compositionSelector:
     matchLabels:
-      provider: aws
-      db: postgresql
+      type: wordpress-db
+      location: remote
   parameters:
-    version: "13"
-    size: small
-    databases:
-      - wordpress-db
+    namespace: development
+    image: wordpress:latest
+    port: 8080
+    host: wordpress.lab.fervid.us
+    dbSecret:
+      name: wordpress-db-credentials
+      namespace: cto-architecture
+    kubernetesProviderConfigName: cluster-01
