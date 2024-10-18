@@ -35,7 +35,7 @@ spec = {
         version = ">=v1.8.3"
     }, {
         provider = "xpkg.upbound.io/crossplane-contrib/provider-sql"
-        version = >=v0.9.0"
+        version = ">=v0.9.0"
     }, {
         function = "xpkg.upbound.io/crossplane-contrib/function-auto-ready"
         version = ">=v0.3.0"
