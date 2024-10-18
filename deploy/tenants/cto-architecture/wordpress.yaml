@@ -23,27 +23,9 @@ metadata:
 data:
   password: bXlzcWw=
 
----
-
-kind: AppClaim
-metadata:
-  name: wordpress
-  namespace: production
-spec:
-  id: wordpress
-  compositionSelector:
-    matchLabels:
-      type: backend-db
-  parameters:
-    namespace: production
-    image: wordpress:latest
-    port: 8080
-    host: wordpress.lab.fervid.us
-
 # ---
 
-# apiVersion: fervid.us/v1alpha1
-# kind: SQLClaim
+# kind: AppClaim
 # metadata:
 #   name: wordpress
 #   namespace: production
@@ -51,11 +33,29 @@ spec:
 #   id: wordpress
 #   compositionSelector:
 #     matchLabels:
-#       provider: aws
-#       db: mysql
+#       type: backend-db
 #   parameters:
-#     version: \"13.4\"
-#     size: small
 #     namespace: production
-#   writeConnectionSecretToRef:
-#     name: wordpress
+#     image: wordpress:latest
+#     port: 8080
+#     host: wordpress.lab.fervid.us
+
+---
+
+apiVersion: fervid.us/v1alpha1
+kind: SQLClaim
+metadata:
+  name: wordpress
+  namespace: production
+spec:
+  id: wordpress
+  compositionSelector:
+    matchLabels:
+      provider: aws
+      db: mysql
+  parameters:
+    version: \"13.4\"
+    size: small
+    namespace: production
+  writeConnectionSecretToRef:
+    name: wordpress
