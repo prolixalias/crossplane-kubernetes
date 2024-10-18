@@ -23,25 +23,25 @@ metadata:
 data:
   password: cG9zdGdyZXM=
 
----
+# ---
 
-apiVersion: database.aws.crossplane.io/v1beta1
-kind: RDSInstance
-metadata:
-  name: wordpress-db
-spec:
-  forProvider:
-    dbInstanceClass: db.t3.micro
-    masterUsername: masteruser
-    masterUserPasswordSecretRef:
-      name: rds-instance-credentials
-      key: password
-    allocatedStorage: 20
-    engine: postgresql
-    engineVersion: "16.4"
-    region: us-east-1
-  providerConfigRef:
-    name: default
+# apiVersion: database.aws.crossplane.io/v1beta1
+# kind: RDSInstance
+# metadata:
+#   name: wordpress-db
+# spec:
+#   forProvider:
+#     dbInstanceClass: db.t3.micro
+#     masterUsername: masteruser
+#     masterUserPasswordSecretRef:
+#       name: rds-instance-credentials
+#       key: password
+#     allocatedStorage: 20
+#     engine: postgresql
+#     engineVersion: "16.4"
+#     region: us-east-1
+#   providerConfigRef:
+#     name: default
 
 # ---
 
