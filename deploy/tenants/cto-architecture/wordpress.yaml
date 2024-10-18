@@ -40,22 +40,22 @@ data:
 #     port: 8080
 #     host: wordpress.lab.fervid.us
 
----
+# ---
 
-apiVersion: fervid.us/v1alpha1
-kind: SQLClaim
-metadata:
-  name: wordpress
-  namespace: development
-spec:
-  id: wordpress
-  compositionSelector:
-    matchLabels:
-      provider: aws
-      db: mysql
-  parameters:
-    version: \"13.4\"
-    size: small
-    namespace: development
-  writeConnectionSecretToRef:
-    name: wordpress
+# apiVersion: fervid.us/v1alpha1
+# kind: SQLClaim
+# metadata:
+#   name: wordpress
+#   namespace: development
+# spec:
+#   id: wordpress
+#   compositionSelector:
+#     matchLabels:
+#       provider: aws
+#       db: mysql
+#   parameters:
+#     version: \"13.4\"
+#     size: small
+#     namespace: development
+#   writeConnectionSecretToRef:
+#     name: wordpress
