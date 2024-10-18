@@ -23,42 +23,42 @@ metadata:
 data:
   password: cG9zdGdyZXM=
 
----
+# ---
 
-apiVersion: fervid.us/v1alpha1
-kind: AppClaim
-metadata:
-  name: wordpress
-spec:
-  id: wordpress
-  compositionSelector:
-    matchLabels:
-      type: wordpress-db
-      location: remote
-  parameters:
-    namespace: development
-    image: wordpress:latest
-    port: 8080
-    host: wordpress.lab.fervid.us
-    dbSecret:
-      name: wordpress-db-credentials
-      namespace: cto-architecture
-    kubernetesProviderConfigName: cluster-01
+# apiVersion: fervid.us/v1alpha1
+# kind: AppClaim
+# metadata:
+#   name: wordpress
+# spec:
+#   id: wordpress
+#   compositionSelector:
+#     matchLabels:
+#       type: wordpress-db
+#       location: remote
+#   parameters:
+#     namespace: development
+#     image: wordpress:latest
+#     port: 8080
+#     host: wordpress.lab.fervid.us
+#     dbSecret:
+#       name: wordpress-db-credentials
+#       namespace: cto-architecture
+#     kubernetesProviderConfigName: cluster-01
 
----
+# ---
 
-apiVersion: fervid.us/v1alpha1
-kind: SQLClaim
-metadata:
-  name: wordpress-db
-spec:
-  id: wordpress-db
-  compositionSelector:
-    matchLabels:
-      provider: aws
-      db: postgresql
-  parameters:
-    version: "13"
-    size: small
-    databases:
-      - wordpress-db
+# apiVersion: fervid.us/v1alpha1
+# kind: SQLClaim
+# metadata:
+#   name: wordpress-db
+# spec:
+#   id: wordpress-db
+#   compositionSelector:
+#     matchLabels:
+#       provider: aws
+#       db: postgresql
+#   parameters:
+#     version: "13"
+#     size: small
+#     databases:
+#       - wordpress-db
