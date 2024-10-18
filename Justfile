@@ -16,6 +16,7 @@ package-generate:
 package-apply:
   kubectl apply --filename package/definition.yaml && sleep 1
   kubectl apply --filename package/compositions.yaml
+  kubectl apply --filename package/sql.yaml
 
 # Builds and pushes the package.
 #package-publish: package-generate
