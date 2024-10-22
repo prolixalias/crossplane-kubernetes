@@ -5,7 +5,7 @@ kind: ClusterClaim
 metadata:
   name: cluster-demo
 spec:
-  id: cluster-01
+  id: cluster-demo
   compositionSelector:
     matchLabels:
       provider: aws
