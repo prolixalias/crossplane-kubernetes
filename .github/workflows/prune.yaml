@@ -22,7 +22,7 @@ jobs:
             cd deploy/tenants/$target_tenant
             target_files = $(ls -1 *.yaml)
             for target_file in $target_files; do
-              MTIME=$(git log -1 --format="%at" -- $target_file")
+              MTIME=$(git log -1 --format="%at" -- $target_file)
               if [ "$MTIME" -lt $days_allowed]; then
                 echo -e "\nExpiring $target_file modified $(date -d "@$MTIME")"
                 mv $target_file expired/
