@@ -1,4 +1,4 @@
-name: deploy
+name: Deploy
 
 on:
   push:
@@ -9,25 +9,70 @@ jobs:
   deploy-to-cluster:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          persist-credentials: false
           fetch-depth: 0
-      - uses: jetpack-io/devbox-install-action@v0.11.0
+
+      - name: Install Devbox
+        uses: jetpack-io/devbox-install-action@v0.11.0
         with:
           enable-cache: true
           project-path: .github/workflows
-      - uses: helm/kind-action@v1
-      - uses: crazy-max/ghaction-setup-containerd@v3
-      - uses: 1password/load-secrets-action/configure@v2
+
+      - name: Setup Kind
+        uses: helm/kind-action@v1.8.0
+        with:
+          config: .github/workflows/kind-config.yaml
+          wait: 120s
+
+      - name: Setup containerd
+        uses: crazy-max/ghaction-setup-containerd@v3
+
+      - name: Configure 1Password CLI
+        uses: 1password/load-secrets-action/configure@v2
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-      - name: Setup
+
+      - name: Setup Cluster and Install Crossplane
         run: |
-          devbox --config .github/workflows run cluster-create && sleep 60
-      - name: Validate
+          set -e
+          echo "Creating cluster and installing Crossplane..."
+          devbox --config .github/workflows run cluster-create
+          
+          # Wait for Crossplane to be ready
+          kubectl wait --for=condition=available deployment/crossplane --timeout=300s -n crossplane-system
+          
+          # Load secrets from 1Password and create Kubernetes secrets
+          kubectl create secret generic crossplane-secrets \
+            --from-literal=aws-credentials=$(op read op://MyVault/AWS-Credentials/credential) \
+            --from-literal=gcp-credentials=$(op read op://MyVault/GCP-Credentials/credential)
+
+          # Apply your Crossplane configurations
+          kubectl apply -f crossplane-configs/
+
+      - name: Validate Deployment
         run: |
-          echo "This might be tricky."
-      - name: Destroy
+          set -e
+          echo "Validating deployment..."
+          
+          # Check if Crossplane is running
+          kubectl get pods -n crossplane-system
+          
+          # Check the status of your Crossplane resources
+          kubectl get compositions
+          kubectl get xrds
+          
+          # Add more specific checks for your deployed resources
+          # For example:
+          # kubectl wait --for=condition=ready myresource/myname --timeout=180s
+          
+          echo "Deployment validation complete."
+
+      - name: Cleanup
+        if: always()
         run: |
+          echo "Cleaning up resources..."
           devbox --config .github/workflows run cluster-destroy
+          echo "Cleanup complete."
+

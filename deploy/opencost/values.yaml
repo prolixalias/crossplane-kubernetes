@@ -1,0 +1,15 @@
+---
+opencost:
+  cloudCost:
+    enabled: true
+  cloudIntegrationSecret: cloud-costs
+  exporter:
+    defaultClusterId: kind-kind
+  ui:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - host: opencost.127.0.0.1.nip.io
+          paths:
+            - /

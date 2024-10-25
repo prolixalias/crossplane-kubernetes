@@ -90,5 +90,7 @@ _cluster-create-kind:
   for providerconfig in `ls -1 providers | grep provider-config`; do kubectl apply --filename providers/$providerconfig; done
   for tenant in `ls -1 deploy/tenants`; do kubectl create namespace ${tenant} || true; done
   kubectl apply --filename providers/provider-config-aws.yaml
+  helm upgrade --install opencost opencost --repo https://opencost.github.io/opencost-helm-chart --namespace opencost --create-namespace --values deploy/opencost/values.yaml --wait --timeout 5m
+  kubectl create secret --namespace opencost generic cloud-costs --from-file=deploy/opencost/cloud-integration.json
   helm upgrade --install argocd argo-cd --repo https://argoproj.github.io/argo-helm --namespace argocd --create-namespace --values deploy/argocd/values.yaml --wait --timeout 10m
   kubectl apply -f deploy/argocd/applications.yaml

@@ -1,8 +1,8 @@
-name: prune
+name: Prune
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"  # Run daily at midnight UTC
 
 jobs:
   prune:
@@ -13,30 +13,43 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0  # Fetch all history for proper git log
+
       - name: Cleanup
         run: |
-          export days_allowed=30
-          target_tenants=$(ls -1 deploy/tenants)
-          for target_tenant in $target_tenants; do
-            echo -n "."
-            cd deploy/tenants/$target_tenant
-            target_files = $(ls -1 *.yaml)
-            for target_file in $target_files; do
-              MTIME=$(git log -1 --format="%at" -- $target_file)
-              if [ "$MTIME" -lt $days_allowed]; then
-                echo -e "\nExpiring $target_file modified $(date -d "@$MTIME")"
-                mv $target_file expired/
-              else
-                echo "Nothing to do, exiting..."
-            done
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          days_allowed=30
+          current_timestamp=$(date +%s)
+          cutoff_timestamp=$((current_timestamp - days_allowed * 86400))
+
+          find deploy/tenants -type f -name '*.yaml' | while IFS= read -r file; do
+            mtime=$(git log -1 --format="%at" -- "$file")
+            if [ "$mtime" -lt "$cutoff_timestamp" ]; then
+              echo "Expiring $file modified $(date -d "@$mtime")"
+              mkdir -p "$(dirname "$file")/expired"
+              git mv "$file" "$(dirname "$file")/expired/"
+            fi
           done
+
       - name: Commit & Push
         run: |
-          if [ $(git status --porcelain | wc -l) -eq "0" ]; then
-            echo "Nothing to do, exiting..."
-          else
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          if [[ -n $(git status -s) ]]; then
+            git config user.name "GitHub Actions Bot"
+            git config user.email "<>"
             git add -A
-            git commit -m "auto-prune"
-            git Push
-            echo "Done."
+            git commit -m "Auto-prune expired files"
+            git push
+            echo "Changes committed and pushed."
+          else
+            echo "No changes to commit."
           fi
+
+      - name: Check for errors
+        if: failure()
+        run: |
+          echo "::error::The prune job failed. Please check the logs for more information."
