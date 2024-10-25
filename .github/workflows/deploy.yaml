@@ -29,12 +29,12 @@ jobs:
       - name: Setup containerd
         uses: crazy-max/ghaction-setup-containerd@v3
 
-      - name: Configure 1Password CLI
+      - name: Configure Secrets CLI
         uses: 1password/load-secrets-action/configure@v2
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
-      - name: Setup Cluster and Install Crossplane
+      - name: Setup Management Cluster
         run: |
           set -e
           echo "Creating cluster and installing Crossplane..."
@@ -63,9 +63,9 @@ jobs:
           kubectl get compositions
           kubectl get xrds
           
-          # Add more specific checks for your deployed resources
+          # Add more specific checks for deployed resources
           # For example:
-          # kubectl wait --for=condition=ready myresource/myname --timeout=180s
+          # kubectl wait --for=condition=ready thisresource/name --timeout=180s
           
           echo "Deployment validation complete."
 
@@ -74,5 +74,6 @@ jobs:
         run: |
           echo "Cleaning up resources..."
           # kubectl delete xrds --all && kubectl wait --for=delete --all managed --timeout=-1s # only for development, this will destroy everything managed
-          devbox --config .github/workflows run cluster-destroy
+          # devbox --config .github/workflows run cluster-destroy
+          # add something here if the needs arises
           echo "Cleanup complete."
