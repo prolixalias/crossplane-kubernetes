@@ -73,6 +73,6 @@ jobs:
         if: always()
         run: |
           echo "Cleaning up resources..."
+          # kubectl delete xrds --all && kubectl wait --for=delete --all managed --timeout=-1s # only for development, this will destroy everything managed
           devbox --config .github/workflows run cluster-destroy
           echo "Cleanup complete."
-
