@@ -23,7 +23,7 @@ jobs:
       - name: Setup Kind
         uses: helm/kind-action@v1.8.0
         with:
-          config: .github/workflows/kind-config.yaml
+          config: kind.yaml
           wait: 120s
 
       - name: Setup containerd
