@@ -14,13 +14,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Devbox
+      - name: Install devbox
         uses: jetpack-io/devbox-install-action@v0.11.0
         with:
           enable-cache: true
           project-path: .github/workflows
 
-      - name: Setup Kind
+      - name: Setup kind
         uses: helm/kind-action@v1.8.0
         with:
           config: kind.yaml
@@ -29,21 +29,21 @@ jobs:
       - name: Setup containerd
         uses: crazy-max/ghaction-setup-containerd@v3
 
-      - name: Configure Secrets CLI
+      - name: Configure secrets CLI
         uses: 1password/load-secrets-action/configure@v2
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
-      - name: Setup Management Cluster
+      - name: Setup management cluster of management clusters
         run: |
           set -e
-          echo "Creating cluster and installing Crossplane..."
-          devbox --config .github/workflows run cluster-create-action
+          echo "Creating management cluster..."
+          devbox --config .github/workflows run just cluster-create-action
           
-          # Wait for Crossplane to be ready
+          # Wait for crossplane readiness
           kubectl wait --for=condition=available deployment/crossplane --timeout=300s -n crossplane-system
           
-          # Load secrets from 1Password and create Kubernetes secrets
+          # Load secrets from 1P and create k8s secrets
           kubectl create secret generic crossplane-secrets \
             --from-literal=aws-credentials=$(op read op://MyVault/AWS-Credentials/credential) \
             --from-literal=gcp-credentials=$(op read op://MyVault/GCP-Credentials/credential)
@@ -51,7 +51,7 @@ jobs:
           # Apply your Crossplane configurations
           kubectl apply -f crossplane-configs/
 
-      - name: Validate Deployment
+      - name: Validate deployment
         run: |
           set -e
           echo "Validating deployment..."
@@ -69,7 +69,7 @@ jobs:
           
           echo "Deployment validation complete."
 
-      - name: Cleanup
+      - name: Cleanup # this should not be necessary on a runner - leaving as a placeholder
         if: always()
         run: |
           echo "Cleaning up resources..."
