@@ -38,7 +38,7 @@ jobs:
         run: |
           set -e
           echo "Creating cluster and installing Crossplane..."
-          devbox --config .github/workflows run cluster-create
+          devbox --config .github/workflows run cluster-create-action
           
           # Wait for Crossplane to be ready
           kubectl wait --for=condition=available deployment/crossplane --timeout=300s -n crossplane-system
