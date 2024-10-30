@@ -3,11 +3,11 @@
 apiVersion: fervid.us/v1alpha1
 kind: ClusterClaim
 metadata:
-  name: cluster-01
+  name: cluster-demo
   annotations:
-    crossplane.io/external-name: cluster-01
+    crossplane.io/external-name: cluster-demo
 spec:
-  id: cluster-01
+  id: cluster-demo
   compositionSelector:
     matchLabels:
       provider: aws
@@ -30,10 +30,10 @@ spec:
 # apiVersion: fervid.us/v1alpha1
 # kind: SQLClaim
 # metadata:
-#   name: wordpress
+#   name: demo
 #   namespace: cto-architecture
 # spec:
-#   id: wordpress
+#   id: demo
 #   compositionSelector:
 #     matchLabels:
 #       provider: aws
@@ -43,4 +43,4 @@ spec:
 #     size: small
 #     namespace: cto-architecture
 #   writeConnectionSecretToRef:
-#     name: wordpress
+#     name: demo

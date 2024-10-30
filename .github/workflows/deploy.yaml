@@ -48,8 +48,8 @@ jobs:
             --from-literal=aws-credentials=$(op read op://MyVault/AWS-Credentials/credential) \
             --from-literal=gcp-credentials=$(op read op://MyVault/GCP-Credentials/credential)
 
-          # Apply your Crossplane configurations
-          kubectl apply -f crossplane-configs/
+          # placeholder - this should be handled by argocd - Apply additional Crossplane configurations
+          # kubectl apply -f crossplane-configs/
 
       - name: Validate deployment
         run: |
